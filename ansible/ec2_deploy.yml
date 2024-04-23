@@ -42,7 +42,7 @@
 
   tasks:
     - name: Install Git and Docker
-      yun:
+      yum:
         name:
           - git
           - docker
