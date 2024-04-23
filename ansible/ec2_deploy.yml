@@ -53,7 +53,7 @@
         state: started
         enabled: yes
     - name: Set proper rights to Docker service
-      shell: usermod - a -G docker ec2-user
+      shell: usermod -a -G docker ec2-user
 
     - name: Fetch eshop from Git
       git:
