@@ -36,7 +36,7 @@
       loop: "{{ ec2_instance_result.instances }}"
 
 - name: Configure EC2 instances
-  host: launched
+  hosts: launched
   connection: ssh
   become: yes
 
