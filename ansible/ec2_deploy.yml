@@ -5,7 +5,6 @@
   tasks:
     - name: Gather Web Instance EC2 Facts.
       ec2_instance_info:
-        region: "{{ region }}"
         filters:
           "tag:Name": "Eshop"
         aws_access_key: "{{ access_key }}"
