@@ -19,6 +19,10 @@
       set_fact:
         last_created_instance: "{{ sorted_ec2_instances[-1] }}"
 
+    - name: Debug last created EC2 instance
+      debug:
+        var: last_created_instance
+
     - name: Kill EC2 Instance
       ec2_instance:
         instance_ids: "{{ last_created_instance.id }}"
