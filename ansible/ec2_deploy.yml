@@ -25,7 +25,7 @@
 
     - name: Kill EC2 Instance
       ec2_instance:
-        instance_ids: "{{ last_created_instance.id }}"
+        instance_ids: "{{ last_created_instance.instance_id }}"
         state: 'absent'
         region: us-east-1
         aws_access_key: "{{ access_key }}"
