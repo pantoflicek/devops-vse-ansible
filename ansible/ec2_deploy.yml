@@ -71,6 +71,9 @@
   connection: ssh
   become: yes
 
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
   tasks:
     - name: Install Git and Docker
       yum:
