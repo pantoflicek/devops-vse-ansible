@@ -2,13 +2,10 @@
   hosts: localhost
   connection: local
 
-  vars:
-    aws_region: "us-east-1"
-
   tasks:
     - name: Gather Web Instance EC2 Facts.
       ec2_instance_info:
-        region: "{{ aws_region }}"
+        region: "us-east-1"
         filters:
           "tag:Name": "Eshop"
         aws_access_key: "{{ access_key }}"
