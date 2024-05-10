@@ -6,21 +6,28 @@
     - name: Gather Web Instance EC2 Facts.
       ec2_instance_info:
         region: us-east-1
-        filters:
-          "tag:Name": "Eshop"
         aws_access_key: "{{ access_key }}"
         aws_secret_key: "{{ secret_key }}"
         security_token: "{{ session_token }}"
-      register: ec2
+      register: ec2_instances
+
+    - name: Sort EC2 instances by launch time
+      set_fact:
+        sorted_ec2_instances: "{{ ec2_instances.instances | sort(attribute='launch_time') | list }}"
+
+    - name: Get the last created EC2 instance
+      set_fact:
+        last_created_instance: "{{ sorted_ec2_instances[-1] }}"
 
     - name: Kill EC2 Instance
       ec2_instance:
-        instance_ids: '{{ ec2.instances[0].instance_id }}'
+        instance_ids: "{{ last_created_instance.id }}"
         state: 'absent'
         region: us-east-1
         aws_access_key: "{{ access_key }}"
         aws_secret_key: "{{ secret_key }}"
         security_token: "{{ session_token }}"
+      when: last_created_instance is defined
 
 - name: Deploy to EC2
   hosts: localhost
