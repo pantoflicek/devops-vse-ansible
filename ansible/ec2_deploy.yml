@@ -14,8 +14,8 @@
       register: ec2
 
     - name: Kill EC2 Instance
-      ec2:
-        instance_ids: "{{ ec2.instances[0].instance_id }}"
+      ec2_instance:
+        instance_ids: "i-05d2cf7e323e5e4b7"
         state: 'absent'
         region: us-east-1
         aws_access_key: "{{ access_key }}"
