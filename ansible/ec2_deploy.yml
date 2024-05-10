@@ -1,3 +1,27 @@
+- name: Kill previous Instance
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Gather Web Instance EC2 Facts.
+      ec2_instance_info:
+        region: "{{ region }}"
+        filters:
+          "tag:Name": "Eshop"
+        aws_access_key: "{{ access_key }}"
+        aws_secret_key: "{{ secret_key }}"
+        security_token: "{{ session_token }}"
+      register: ec2_web
+
+    - name: Kill EC2 Instance
+      ec2:
+        instance_ids: "{{ ec2_web.instances[0].instance_id }}"
+        state: absent
+        region: "{{ region }}"
+        aws_access_key: "{{ access_key }}"
+        aws_secret_key: "{{ secret_key }}"
+        security_token: "{{ session_token }}"
+
 - name: Deploy to EC2
   hosts: localhost
   connection: local
