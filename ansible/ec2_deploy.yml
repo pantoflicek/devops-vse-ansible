@@ -72,7 +72,6 @@
 
 - name: Configure EC2 instances
   hosts: launched
-  connection: ssh
   become: yes
 
   tasks:
