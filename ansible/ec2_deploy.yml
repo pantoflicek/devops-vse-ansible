@@ -88,7 +88,7 @@
 
     - name: Fetch eshop from Git
       git:
-        repo: 'https://github.com/pantoflicek/devops-vse-eshop.git'
+        repo: 'https://github.com/pantoflicek/devops-vse-semestralka.git'
         dest: ./app
 
     - name: Build Eshop Docker image
